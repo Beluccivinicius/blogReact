@@ -1,0 +1,36 @@
+.topics{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-inline-start: 0px;
+  }
+
+  .prevContent{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .liStyle{
+    padding: 0px 8px 0px;
+    margin-left: 0px;
+  }
+
+  .ctaButton{
+    display: flex;
+    margin: 8px;
+    width: 275px;
+    justify-content: space-between;
+  }
+
+  .containerPrev{
+    width: 647px;
+    height: auto;
+    background-color: #ffff;
+    border-radius: 20px;
+    padding: 18px;
+  }
+
+  .containerPrev:hover{
+      background-color: #ECEEF7
+  }
+  

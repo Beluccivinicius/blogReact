@@ -1,0 +1,28 @@
+.profile{
+    background-color: beige;
+    text-align: center;
+    display: flex;
+    font-size: calc(10px + 2vmin);
+    min-height: 500px;
+    justify-content: space-between;
+    padding-top: 34px;
+    flex-direction: column;
+    border-radius: 20px;
+    height: auto;
+    width: 218px;
+  }
+
+  .image{
+    width: 142px;
+    height: 142px;
+    border-radius: 142px;
+    margin-left: 38px;
+  }
+
+  #buttonProfile {
+    height: 70px;
+    padding-left: 38px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    border-radius: 0px 0px 20px 20px;
+  };

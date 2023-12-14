@@ -1,0 +1,44 @@
+  .button{
+    border-radius: 40px;
+    padding: 4px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: "center";
+    color: #fff;
+    background: #AAABB8;
+}
+
+#buttonBack{
+  border-radius: 10px;
+  height: 43px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #fff;
+  padding-left: 4px;
+  padding-right: 13px;
+}
+
+#likeButton{
+  border-radius: 10px;
+  width: 80px;
+}
+
+#savedButton{
+  background-color: #4F5FF1;
+}
+
+#noSavedButton{
+  background-color: #AAABB8;
+}
+
+#numberLikes{
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+button:hover{
+  background-color: #4F5FF1;
+}
