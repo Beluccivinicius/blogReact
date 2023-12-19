@@ -24,13 +24,10 @@
 
   .containerPrev{
     width: 647px;
+    margin-left: 200px;
     height: auto;
     background-color: #ffff;
     border-radius: 20px;
     padding: 18px;
-  }
-
-  .containerPrev:hover{
-      background-color: #ECEEF7
   }
   
