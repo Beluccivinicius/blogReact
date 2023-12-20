@@ -8,6 +8,7 @@ import {
   ButtonComent,
   ButtonShare,
 } from "./Buttons.js";
+
 import { useState, useEffect } from "react";
 
 function PrevContent() {
@@ -16,7 +17,7 @@ function PrevContent() {
   headers.append("Accept", "application/json");
   headers.append("Origin", "http://localhost:3000");
 
-  const [notices, setnotices] = useState([]);
+  const [notices, setNotices] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5050/", {
@@ -26,16 +27,22 @@ function PrevContent() {
       .then((body) => body.json())
       .then((data) => {
         console.log(data);
-        setnotices(data);
+        setNotices(data);
       })
       .catch((res) => console.log(res));
   }, []);
 
   const changeColor = (e) => {
-    // const bodyContent = document.getElementById(notices.id);
-    console.log(e.target);
+    const element = e.target;
+    const div = element.closest(".PrevContent_prevContent__uhUTT");
 
-    // bodyContent.style.background = "#D9D9D9";
+    if (!div.value || div.value == "hover") {
+      div.style.backgroundColor = "#D9D9D9";
+      div.value = "noHover";
+      return;
+    }
+    div.style.backgroundColor = "#fff";
+    div.value = "hover";
   };
 
   return (
@@ -55,22 +62,23 @@ function PrevContent() {
             <a href="www.google.com.br">Ler mais+</a>
             <br></br>
             <img src={foto}></img>
+            <div>
+              <br></br>
+              <ul className={style.topics}>
+                <li className={style.liStyle}>Assuntos:</li>
+                <li className={style.liStyle}>{n.theme_one}</li>
+                <li className={style.liStyle}>{n.theme_two}</li>
+                <li className={style.liStyle}>{n.theme_three}</li>
+              </ul>
+            </div>
+            <div className={style.ctaButton}>
+              <ButtonLike numberLikes={n.id} idPost={n.id} />
+              <ButtonComent />
+              <ButtonSave />
+              <ButtonShare />
+            </div>
           </div>
-          <div>
-            <br></br>
-            <ul className={style.topics}>
-              <li className={style.liStyle}>Assuntos:</li>
-              <li className={style.liStyle}>{n.theme_one}</li>
-              <li className={style.liStyle}>{n.theme_two}</li>
-              <li className={style.liStyle}>{n.theme_three}</li>
-            </ul>
-          </div>
-          <div className={style.ctaButton}>
-            <ButtonLike numberLikes={n.id} idPost={n.id} />
-            <ButtonComent />
-            <ButtonSave />
-            <ButtonShare />
-          </div>
+          <hr></hr>
         </>
       ))}
     </div>

@@ -7,6 +7,11 @@
 
   .prevContent{
     display: flex;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    width: 647px;
+    padding: 32px;
+    height: auto;
     flex-direction: column;
   }
 
@@ -23,11 +28,7 @@
   }
 
   .containerPrev{
-    width: 647px;
     margin-left: 200px;
-    height: auto;
-    background-color: #ffff;
-    border-radius: 20px;
     padding: 18px;
   }
   
