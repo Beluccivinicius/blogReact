@@ -1,0 +1,23 @@
+.divComment {
+    background: beige;
+    display: block;
+    width: 647px;
+    height: auto;
+    padding: 36px;
+}
+
+.nameComment{
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.nameProfile{
+    padding-left: 20px;
+}
+
+.imgComment{
+    height: 33px;
+    width: 33px;
+    border-radius: 50%;
+}

@@ -1,13 +1,18 @@
+body{
+  all: unset;
+}
+
 button{
   all: unset;
-    background-color: #4F5FF1;
-    color: #FFF;
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  background-color: #4F5FF1;
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
+
 li{
   all: unset;
 }

@@ -5,7 +5,7 @@ import styles from "./Navbar.module.css";
 function Navbar() {
   return (
     <nav className={styles.nav}>
-      <img src={foto}></img>
+      <img className={styles.interprise} src={foto}></img>
       <div className={styles.search}>
         <i>
           <IoSearch />
