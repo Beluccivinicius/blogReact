@@ -32,6 +32,13 @@ function PrevContent() {
       .catch((res) => console.log(res));
   }, []);
 
+  const [comment, setComment] = useState(false);
+
+  const showOrHide = () => {
+    console.log("oi");
+    setComment(true);
+  };
+
   const changeColor = (e) => {
     const element = e.target;
     const div = element.closest(".PrevContent_prevContent__uhUTT");
@@ -73,7 +80,8 @@ function PrevContent() {
             </div>
             <div className={style.ctaButton}>
               <ButtonLike numberLikes={n.id} idPost={n.id} />
-              <ButtonComent />
+              <ButtonComent onClick={() => showOrHide()} />
+              {comment ? <p>Tô aqui</p> : null}
               <ButtonSave />
               <ButtonShare />
             </div>
