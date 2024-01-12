@@ -4,18 +4,20 @@ import { IoChatbubbleOutline } from "react-icons/io5";
 import { CiBookmark } from "react-icons/ci";
 import { SlArrowLeft } from "react-icons/sl";
 import { AiOutlineLike } from "react-icons/ai";
-import { useState } from "react";
+import headers from "../utils/headers.js";
 
-function ButtonLike({ numberLikes, idPost }) {
+import { useState, useEffect } from "react";
+
+function ButtonLike({ numberLikes, id }) {
   const [numberLike, setNumberLikes] = useState(numberLikes);
 
   const changeColor = (e) => {
-    const myButton = document.getElementById(idPost);
+    const myButton = document.getElementById(id);
 
     if (!myButton.value || myButton.value == "dontLiked") {
       myButton.style.background = "#4F5FF1";
       myButton.value = "liked";
-      setNumberLikes(idPost + 1);
+      setNumberLikes(numberLikes + 1);
       return;
     }
 
@@ -25,7 +27,7 @@ function ButtonLike({ numberLikes, idPost }) {
   };
 
   return (
-    <button className={styles.likeButton} id={idPost} onClick={changeColor}>
+    <button className={styles.likeButton} id={id} onClick={changeColor}>
       <span id={styles.numberLikes}>{numberLike}</span>
       <AiOutlineLike />
     </button>
@@ -43,9 +45,9 @@ function ButtonShare() {
   );
 }
 
-function ButtonComent() {
+function ButtonComment({ evento }) {
   return (
-    <button className={styles.button} name="coment">
+    <button className={styles.button} onClick={evento}>
       <IoChatbubbleOutline />
     </button>
   );
@@ -84,4 +86,4 @@ function ButtonReturn() {
   );
 }
 
-export { ButtonSave, ButtonReturn, ButtonComent, ButtonShare, ButtonLike };
+export { ButtonSave, ButtonReturn, ButtonComment, ButtonShare, ButtonLike };
