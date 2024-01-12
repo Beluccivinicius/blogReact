@@ -11,7 +11,6 @@ function MoreComment() {
 
 function Comment({ props }) {
   const infoComents = props.props;
-  console.log(props);
   return (
     <div className={style.divComment}>
       <div className={style.divNameComment}>
@@ -24,7 +23,7 @@ function Comment({ props }) {
       <div className={style.comment}>
         <span className={style.comment}>{props.comment}</span>
       </div>
-      <ButtonLike numberLikes={props.likes} id={props.id} />
+      <ButtonLike numberLikes={props.likes} id={`${props.id}buttonLike`} />
       <hr></hr>
     </div>
   );

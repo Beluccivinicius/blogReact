@@ -45,9 +45,34 @@ function ButtonShare() {
   );
 }
 
-function ButtonComment({ evento }) {
+function ButtonComment({ evento, id }) {
+  const [comments, setComment] = useState([]);
+  const [closeComment, setCloseComment] = useState(false);
+
+  const commentPost = () => {
+    if (comments.length > 0) {
+      setCloseComment(true);
+    }
+
+    fetch(`http://localhost:5050/messages/${id}`, {
+      method: "GET",
+      headers: headers,
+    })
+      .then((body) => body.json())
+      .then((data) => {
+        setComment(data);
+      })
+      .catch((res) => console.log(res));
+  };
+
   return (
-    <button className={styles.button} onClick={evento}>
+    <button
+      className={styles.button}
+      onClick={() => {
+        commentPost();
+      }}
+    >
+      {comments.length > 0 && evento(comments, id)}
       <IoChatbubbleOutline />
     </button>
   );

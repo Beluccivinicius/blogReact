@@ -16,6 +16,7 @@ function Home() {
     })
       .then((body) => body.json())
       .then((data) => {
+        console.log(data);
         const validPost = data.filter((post) => {
           return post.content != null;
         });

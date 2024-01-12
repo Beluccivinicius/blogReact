@@ -11,6 +11,7 @@ import {
 } from "./Buttons.js";
 import { Comment, MoreComment } from "./Comment.js";
 import headers from "../utils/headers.js";
+import * as ReactDOM from "react-dom";
 
 import { useState, useEffect } from "react";
 
@@ -31,19 +32,11 @@ function PrevContent(props) {
     div.value = "hover";
   };
 
+  const [count, setCount] = useState(false);
   const [comments, setComment] = useState([]);
 
-  const commentPost = () => {
-    fetch(`http://localhost:5050/messages/${post.id}`, {
-      method: "GET",
-      headers: headers,
-    })
-      .then((body) => body.json())
-      .then((data) => {
-        console.log(data);
-        setComment(data);
-      })
-      .catch((res) => console.log(res));
+  const commentPost = (comment, id) => {
+    setComment(comment);
   };
 
   return (
@@ -72,22 +65,20 @@ function PrevContent(props) {
           </ul>
         </div>
         <div className={style.ctaButton}>
-          <ButtonLike numberLikes={post.id} id={post.id} />
-          <ButtonComment
-            evento={() => {
-              commentPost();
-            }}
-          />
+          <ButtonLike numberLikes={post.id} id={`${post.id_post}buttonLike`} />
+          <ButtonComment evento={commentPost} id={post.id} />
           <ButtonSave />
           <ButtonShare />
         </div>
       </div>
       <hr></hr>
-      {comments.length > 0 ? (
-        comments.map((comment) => <Comment props={comment} />)
-      ) : (
-        <h1>não tem nada</h1>
-      )}
+      <div className="closed" id={post.id_post + "divComment"}>
+        {comments.length > 0 &&
+          comments.map((comment) => (
+            <Comment props={comment} key={comment.id + "comment"} />
+          ))}
+        {}
+      </div>
     </div>
   );
 }
