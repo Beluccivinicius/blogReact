@@ -1,5 +1,6 @@
 import style from "./Comment.module.css";
 import { ButtonLike } from "./Buttons";
+import { useCallback, useEffect, useState } from "react";
 
 function MoreComment() {
   return (
@@ -9,8 +10,7 @@ function MoreComment() {
   );
 }
 
-function Comment({ props }) {
-  const infoComents = props.props;
+function Comment({ props, evento }) {
   return (
     <div className={style.divComment}>
       <div className={style.divNameComment}>

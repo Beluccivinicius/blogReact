@@ -1,5 +1,6 @@
 import style from "./PrevContent.module.css";
 import styleComment from "./Comment.module.css";
+import stylesButton from "./Button.module.css";
 import foto from "../foto.png";
 import Prototype from "prop-types";
 import {
@@ -32,11 +33,42 @@ function PrevContent(props) {
     div.value = "hover";
   };
 
-  const [count, setCount] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const [comments, setComment] = useState([]);
 
-  const commentPost = (comment, id) => {
-    setComment(comment);
+  const commentPost = () => {
+    fetch(`http://localhost:5050/messages/${post.id}`, {
+      method: "GET",
+      headers: headers,
+    })
+      .then((body) => body.json())
+      .then((data) => {
+        setComment(data);
+        setOpen(!isOpen);
+      })
+      .catch((res) => console.log(res));
+  };
+
+  const savePost = () => {};
+
+  const [isSave, setSave] = useState(false);
+  const changeColorButton = (e) => {};
+
+  const dispararEventos = (e) => {
+    const element = e.target;
+    const button = element.closest(".Button_button__iEiBG");
+
+    setSave(!isSave);
+
+    if (isSave) {
+      console.log("clicou");
+      button.id = `${stylesButton.isSave}`;
+    } else {
+      button.id = `${stylesButton.noSavedButton}`;
+    }
+
+    savePost(e);
+    changeColorButton();
   };
 
   return (
@@ -66,18 +98,23 @@ function PrevContent(props) {
         </div>
         <div className={style.ctaButton}>
           <ButtonLike numberLikes={post.id} id={`${post.id_post}buttonLike`} />
-          <ButtonComment evento={commentPost} id={post.id} />
-          <ButtonSave />
+          <ButtonComment
+            onClick={() => {
+              commentPost();
+            }}
+            id={post.id}
+          />
+          <ButtonSave onClick={dispararEventos} />
           <ButtonShare />
         </div>
       </div>
       <hr></hr>
       <div className="closed" id={post.id_post + "divComment"}>
-        {comments.length > 0 &&
-          comments.map((comment) => (
-            <Comment props={comment} key={comment.id + "comment"} />
-          ))}
-        {}
+        {isOpen
+          ? comments.map((comment) => (
+              <Comment props={comment} key={comment.id + "comment"} />
+            ))
+          : null}
       </div>
     </div>
   );

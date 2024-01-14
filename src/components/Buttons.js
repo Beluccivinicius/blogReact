@@ -45,58 +45,20 @@ function ButtonShare() {
   );
 }
 
-function ButtonComment({ evento, id }) {
+function ButtonComment({ onClick }) {
   const [comments, setComment] = useState([]);
-  const [closeComment, setCloseComment] = useState(false);
-
-  const commentPost = () => {
-    if (comments.length > 0) {
-      setCloseComment(true);
-    }
-
-    fetch(`http://localhost:5050/messages/${id}`, {
-      method: "GET",
-      headers: headers,
-    })
-      .then((body) => body.json())
-      .then((data) => {
-        setComment(data);
-      })
-      .catch((res) => console.log(res));
-  };
+  const [isOpen, setOpen] = useState(false);
 
   return (
-    <button
-      className={styles.button}
-      onClick={() => {
-        commentPost();
-      }}
-    >
-      {comments.length > 0 && evento(comments, id)}
+    <button className={styles.button} onClick={onClick}>
       <IoChatbubbleOutline />
     </button>
   );
 }
 
-function ButtonSave() {
-  const changeColor = (e) => {
-    let button = e.target.parentElement;
-    if (!button.name) {
-      button = e.target;
-    }
-
-    if (button.name === "save") {
-      button.id = `${styles.savedButton}`;
-      button.name = "saved";
-      return;
-    }
-
-    button.id = `${styles.noSavedButton}`;
-    button.name = "save";
-  };
-
+function ButtonSave({ onClick }) {
   return (
-    <button className={styles.button} onClick={changeColor} name="save">
+    <button className={styles.button} onClick={onClick} name="save">
       <CiBookmark />
     </button>
   );
