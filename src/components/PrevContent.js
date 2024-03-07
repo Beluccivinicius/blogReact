@@ -6,11 +6,12 @@ import Prototype from "prop-types";
 import {
   ButtonSave,
   ButtonLike,
+  ButtonSendComment,
   ButtonReturn,
   ButtonComment,
   ButtonShare,
 } from "./Buttons.js";
-import { Comment, MoreComment } from "./Comment.js";
+import { Comment, MoreComment, SpaceToComment } from "./Comment.js";
 import headers from "../utils/headers.js";
 import * as ReactDOM from "react-dom";
 
@@ -49,10 +50,14 @@ function PrevContent(props) {
       .catch((res) => console.log(res));
   };
 
-  const savePost = () => {};
+  const savePost = () => {
+    fetch(`http://localhost:5050/save/${post.id}`, {
+      method: "GET",
+      headers: headers,
+    }).catch((res) => console.log(res));
+  };
 
-  const [isSave, setSave] = useState(false);
-  const changeColorButton = (e) => {};
+  const [isSave, setSave] = useState(true);
 
   const dispararEventos = (e) => {
     const element = e.target;
@@ -61,14 +66,12 @@ function PrevContent(props) {
     setSave(!isSave);
 
     if (isSave) {
-      console.log("clicou");
-      button.id = `${stylesButton.isSave}`;
+      button.style.backgroundColor = `#4F5FF1`;
     } else {
-      button.id = `${stylesButton.noSavedButton}`;
+      button.style.backgroundColor = `#AAABB8`;
     }
 
     savePost(e);
-    changeColorButton();
   };
 
   return (
@@ -110,11 +113,11 @@ function PrevContent(props) {
       </div>
       <hr></hr>
       <div className="closed" id={post.id_post + "divComment"}>
-        {isOpen
-          ? comments.map((comment) => (
-              <Comment props={comment} key={comment.id + "comment"} />
-            ))
-          : null}
+        {isOpen && <SpaceToComment />}
+        {isOpen &&
+          comments.map((comment) => (
+            <Comment props={comment} key={comment.id + "comment"} />
+          ))}
       </div>
     </div>
   );

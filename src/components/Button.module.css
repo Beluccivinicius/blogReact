@@ -49,3 +49,16 @@
 button:hover{
   background-color: #4F5FF1;
 }
+
+#buttonSendComment{
+  background-color: #4F5FF1;
+  justify-content: space-around;
+  border-radius: 0px 8px 8px 0px;
+  width: 40px;
+  padding: 4px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: "center";
+  color: #fff;
+}

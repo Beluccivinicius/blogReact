@@ -2,10 +2,11 @@ import styles from "./Button.module.css";
 import { BiShare } from "react-icons/bi";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { CiBookmark } from "react-icons/ci";
+
 import { SlArrowLeft } from "react-icons/sl";
 import { AiOutlineLike } from "react-icons/ai";
 import headers from "../utils/headers.js";
-
+import { SlArrowRight } from "react-icons/sl";
 import { useState, useEffect } from "react";
 
 function ButtonLike({ numberLikes, id }) {
@@ -73,4 +74,19 @@ function ButtonReturn() {
   );
 }
 
-export { ButtonSave, ButtonReturn, ButtonComment, ButtonShare, ButtonLike };
+function ButtonSendComment() {
+  return (
+    <button className={styles.button} id={styles.buttonSendComment}>
+      <SlArrowRight />
+    </button>
+  );
+}
+
+export {
+  ButtonSave,
+  ButtonReturn,
+  ButtonComment,
+  ButtonShare,
+  ButtonLike,
+  ButtonSendComment,
+};

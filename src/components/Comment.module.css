@@ -31,11 +31,44 @@ hr{
     padding-right: 16px;
 }
 
+.search{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 0px;
+    border-style: solid;
+    border-radius: 10px;
+    width: 675px;
+    margin-left: 25px;
+    border-color: #AAABB8;
+}
+
+.imgComment{
+    height: 33px;
+    width: 33px;
+    border-radius: 50%;
+    padding-right: 16px;
+  }
+  
+  input{
+    all: unset
+}
+
+  .input{
+    width: 500px;
+    height: 42px;
+}
+
+.divSendComment{
+    display: flex;
+    margin-left: 100px;
+}
+
 .moreComment{
     height: 55px;
     width: 647px;
     padding-left: 36px;
-    padding-right: 36px;
+    padding-right: 0px;
     background: #D9D9D9;
     border-radius: 0px 0px 30px 30px;
 }
