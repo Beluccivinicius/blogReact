@@ -1,20 +1,19 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import Saved from "./pages/Saved.js";
+import Home from "./pages/home/Home.js";
 import { useState } from "react";
-import Container from "./components/layout/Container.js";
 import Navbar from "./components/layout/Navbar.js";
+import Cadastro from "./pages/cadastro/Cadastro.js";
+import Login from "./pages/login/Login.js";
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <Container>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/save" element={<Saved />} />
-        </Routes>
-      </Container>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </Router>
   );
 }

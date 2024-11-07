@@ -47,9 +47,6 @@ function ButtonShare() {
 }
 
 function ButtonComment({ onClick }) {
-  const [comments, setComment] = useState([]);
-  const [isOpen, setOpen] = useState(false);
-
   return (
     <button className={styles.button} onClick={onClick}>
       <IoChatbubbleOutline />
@@ -74,9 +71,13 @@ function ButtonReturn() {
   );
 }
 
-function ButtonSendComment() {
+function ButtonSendComment({ onClick }) {
   return (
-    <button className={styles.button} id={styles.buttonSendComment}>
+    <button
+      className={styles.button}
+      id={styles.buttonSendComment}
+      onClick={onClick}
+    >
       <SlArrowRight />
     </button>
   );

@@ -2,13 +2,15 @@
     display: block;
     width: 647px;
     height: auto;
-    padding: 36px;
+    padding: 26px;
+    padding-bottom: 0px;
 }
 
 hr{
     margin-top: 12px;
     margin-bottom: 24px;
 }
+
 .divNameComment{
     display: flex;
     align-items: center;
@@ -19,11 +21,13 @@ hr{
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
 }
+
 .comment{
     font-family: 'Roboto', sans-serif;
     margin-bottom: 16px;
     font-size: 20px;
 }
+
 .imgComment{
     height: 33px;
     width: 33px;
@@ -55,13 +59,17 @@ hr{
 }
 
   .input{
-    width: 500px;
+    width: 600px;
     height: 42px;
 }
 
 .divSendComment{
     display: flex;
-    margin-left: 100px;
+    margin-left: 8px;
+}
+
+.doComment{
+    display: flex;
 }
 
 .moreComment{

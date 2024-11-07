@@ -101,19 +101,14 @@ function PrevContent(props) {
         </div>
         <div className={style.ctaButton}>
           <ButtonLike numberLikes={post.id} id={`${post.id_post}buttonLike`} />
-          <ButtonComment
-            onClick={() => {
-              commentPost();
-            }}
-            id={post.id}
-          />
+          <ButtonComment onClick={commentPost} id={post.id} />
           <ButtonSave onClick={dispararEventos} />
           <ButtonShare />
         </div>
       </div>
       <hr></hr>
       <div className="closed" id={post.id_post + "divComment"}>
-        {isOpen && <SpaceToComment />}
+        {isOpen && <SpaceToComment idPost={post.id_post} />}
         {isOpen &&
           comments.map((comment) => (
             <Comment props={comment} key={comment.id + "comment"} />

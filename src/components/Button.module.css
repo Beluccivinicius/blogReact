@@ -53,7 +53,7 @@ button:hover{
 #buttonSendComment{
   background-color: #4F5FF1;
   justify-content: space-around;
-  border-radius: 0px 8px 8px 0px;
+  border-radius:8px;
   width: 40px;
   padding: 4px;
   height: 35px;
