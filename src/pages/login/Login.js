@@ -18,8 +18,8 @@ export default function Login() {
               </h2>
             </Link>
             <span className="text-4xl font-light login-titulo">|</span>
-            <Link to="/cadastro">
-              <h2 className="   text-5xl   font-light login-titulo hover:text-sky-800 ">
+            <Link to="/cadastrar">
+              <h2 className="text-5xl   font-light login-titulo hover:text-sky-800 ">
                 Cadastrar
               </h2>
             </Link>

@@ -1,8 +1,25 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import headers from "../../utils/headers";
 import { json, Link, useNavigate } from "react-router-dom";
+import validateCpf from "../../utils/validateCpf.js";
+import Alert from "@mui/material/Alert";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+
+// fetch do formulario cadastro
+// fetch("http://localhost:5050/cadastrar", {
+//   method: "POST",
+//   body: usuarioJson,
+//   headers: headers,
+// })
+//   .then((body) => body.json())
+//   .then((data) => {
+//     console.log(data);
+//   });
 
 function Cadastro() {
+  // const navigate = useNavigate();
+
   const [usuario, setUsuario] = useState({
     id: 0,
     nome: "",
@@ -14,33 +31,44 @@ function Cadastro() {
     senha: "",
   });
 
+  const [tudoCerto, setTudoCerto] = useState();
+
   const atualizarEstado = (e) => {
     setUsuario({
       ...usuario,
       [e.target.name]: e.target.value,
     });
-    console.log(usuario);
   };
 
   const cadastrarNovoUsuario = () => {
-    fetch("http://localhost:5050/cadastrar", {
-      method: "Post",
-      body: usuario,
-      headers: headers,
-    })
-      .then((body) => body.json())
-      .then((data) => {
-        console.log(data);
-      });
+    // let usuarioJson = JSON.stringify(usuario);
+
+    let cpfValido = validateCpf(usuario.cpf);
+
+    const regexTelefone = /^(?:\+55\s?)?(?:\(?\d{2}\)?\s?)?\d{4,5}-?\d{4}$/;
+    let telefoneValido = regexTelefone.test(usuario.cellPhone);
+
+    if (telefoneValido && cpfValido) {
+      setTudoCerto(
+        <DialogContent>
+          <DialogContentText>
+            Qual a forma de verificação que você gostaria fazer?
+          </DialogContentText>
+        </DialogContent>
+      );
+    } else {
+      setTudoCerto(
+        <Alert variant="filled" severity="error">
+          CPF não é válido
+        </Alert>
+      );
+    }
   };
 
   return (
     <div className="bg-sky-600 p-16">
       <div className="items-center ml-72 mr-72 bg-slate-400 bg-opacity-20 p-20 rounded-3xl backdrop-blur-md">
-        <form
-          className="flex justify-center items-center flex-col  gap-10 form px-16"
-          onSubmit={cadastrarNovoUsuario}
-        >
+        <form className="flex justify-center items-center flex-col  gap-10 form px-16">
           <div className="flex  gap-10">
             <Link to="/login">
               <h2 className=" text-5xl font-light login-titulo hover:text-sky-800 ">
@@ -68,7 +96,6 @@ function Cadastro() {
               onChange={(e) => atualizarEstado(e)}
             />
           </div>
-
           <div className="flex flex-col w-full">
             <label htmlFor="email" className="text-[#16171B] pb-4 ">
               Email*
@@ -79,7 +106,7 @@ function Cadastro() {
               name="email"
               placeholder="Email"
               className="border-2 border-solid border-[#16171B] rounded-2xl py-2 px-4 placeholder-[#16171b] bg-transparent font-medium"
-              value={usuario.email}
+              value={usuario.mail}
               onChange={(e) => atualizarEstado(e)}
             />
           </div>
@@ -169,16 +196,18 @@ function Cadastro() {
               //   }
             />
           </div>
+          {tudoCerto}
           <div className="flex justify-around w-full gap-8">
             <button
               className="rounded-xl color-button   bg-[#FB7F01] hover:bg-[#E03401]  w-1/2 py-4 flex justify-center font-normal text-xl text-[#FFFFFF]"
-              //   o`nClick={back}
+              // onClick={back}
             >
               Cancelar
             </button>
             <button
               className="rounded-xl color-button    bg-[#365314]  hover:bg-[#538d22]   w-1/2 py-4 flex justify-center font-normal text-xl text-[#FFFFFF]"
               type="submit"
+              onClick={cadastrarNovoUsuario}
             >
               Cadastrar
             </button>
