@@ -1,10 +1,9 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import headers from "../../utils/headers";
 import { json, Link, useNavigate } from "react-router-dom";
+import DialogoCadastro from "../../components/dialogoCadastro/DialogoCadastro.js";
 import validateCpf from "../../utils/validateCpf.js";
 import Alert from "@mui/material/Alert";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 
 // fetch do formulario cadastro
 // fetch("http://localhost:5050/cadastrar", {
@@ -30,7 +29,7 @@ function Cadastro() {
     cellPhone: "",
     senha: "",
   });
-
+  const [open, setOpen] = useState(false);
   const [tudoCerto, setTudoCerto] = useState();
 
   const atualizarEstado = (e) => {
@@ -40,22 +39,17 @@ function Cadastro() {
     });
   };
 
-  const cadastrarNovoUsuario = () => {
-    // let usuarioJson = JSON.stringify(usuario);
+  const cadastrarNovoUsuario = (e) => {
+    let usuarioJson = JSON.stringify(usuario);
 
+    e.preventDefault();
     let cpfValido = validateCpf(usuario.cpf);
 
     const regexTelefone = /^(?:\+55\s?)?(?:\(?\d{2}\)?\s?)?\d{4,5}-?\d{4}$/;
     let telefoneValido = regexTelefone.test(usuario.cellPhone);
 
     if (telefoneValido && cpfValido) {
-      setTudoCerto(
-        <DialogContent>
-          <DialogContentText>
-            Qual a forma de verificação que você gostaria fazer?
-          </DialogContentText>
-        </DialogContent>
-      );
+      setTudoCerto(<DialogoCadastro onClick={true} />);
     } else {
       setTudoCerto(
         <Alert variant="filled" severity="error">
@@ -207,7 +201,7 @@ function Cadastro() {
             <button
               className="rounded-xl color-button    bg-[#365314]  hover:bg-[#538d22]   w-1/2 py-4 flex justify-center font-normal text-xl text-[#FFFFFF]"
               type="submit"
-              onClick={cadastrarNovoUsuario}
+              onClick={(e) => cadastrarNovoUsuario(e)}
             >
               Cadastrar
             </button>
