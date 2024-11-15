@@ -40,16 +40,24 @@ function Cadastro() {
   };
 
   const cadastrarNovoUsuario = (e) => {
-    let usuarioJson = JSON.stringify(usuario);
-
     e.preventDefault();
     let cpfValido = validateCpf(usuario.cpf);
 
-    const regexTelefone = /^(?:\+55\s?)?(?:\(?\d{2}\)?\s?)?\d{4,5}-?\d{4}$/;
-    let telefoneValido = regexTelefone.test(usuario.cellPhone);
+    const regexEmail =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-    if (telefoneValido && cpfValido) {
-      setTudoCerto(<DialogoCadastro onClick={true} />);
+    let emailValido = regexEmail.test(usuario.mail);
+
+    let infosValidation = {
+      bool: true,
+      email: usuario.mail,
+      nome: usuario.nome,
+    };
+
+    if (emailValido && cpfValido) {
+      setTudoCerto(
+        <DialogoCadastro bool={true} email={usuario.mail} nome={usuario.nome} />
+      );
     } else {
       setTudoCerto(
         <Alert variant="filled" severity="error">
@@ -96,8 +104,8 @@ function Cadastro() {
             </label>
             <input
               type="text"
-              id="email"
-              name="email"
+              id="mail"
+              name="mail"
               placeholder="Email"
               className="border-2 border-solid border-[#16171B] rounded-2xl py-2 px-4 placeholder-[#16171b] bg-transparent font-medium"
               value={usuario.mail}
