@@ -6,6 +6,7 @@ import Navbar from "./components/layout/Navbar.js";
 import Cadastro from "./pages/cadastro/Cadastro.js";
 import Login from "./pages/login/Login.js";
 import Context from "./Context/cadastroContext.js";
+import CodigoVerificar from "./pages/codigoVerificar/CodigoVerificar.js";
 
 function App() {
   return (
@@ -14,9 +15,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cadastrar" element={<Cadastro />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/codigoVerificar" element={<codigoVerificar />} />
+        <Route path="/cadastrar" element={<Cadastro />} />
+        <Route path="/codigoVerificar" element={<CodigoVerificar />} />
       </Routes>
     </Router>
     /* </authProvider.Provider> */

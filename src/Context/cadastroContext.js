@@ -1,8 +1,6 @@
 import React, { createContext } from "react";
 
-const auth = {
-    
-}
+const auth = {};
 
 const Context = createContext(auth);
 
